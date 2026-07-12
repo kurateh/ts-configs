@@ -1,6 +1,6 @@
 {
   "name": "root",
-  "version": "10.1.0",
+  "version": "0.0.0",
   "type": "module",
   "private": true,
   "scripts": {
@@ -10,8 +10,7 @@
     "lint:root:fix": "oxlint --fix --ignore-pattern 'examples/**'",
     "format": "turbo format",
     "format:check": "turbo format:check",
-    "test": "turbo test",
-    "version": "npm version"
+    "test": "turbo test"
   },
   "keywords": [
     "eslint",
