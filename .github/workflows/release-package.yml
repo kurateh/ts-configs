@@ -16,18 +16,18 @@ jobs:
     steps:
       # Checkout project repository
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
       - name: Install pnpm
-        uses: pnpm/action-setup@v4
+        uses: pnpm/action-setup@v6
         with:
           version: 10.33.2
 
       # Setup Node.js environment
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v6
         with:
           node-version: 24
           cache: "pnpm"
@@ -48,7 +48,7 @@ jobs:
         run: |
           if [ -n "$CUSTOM_VERSION" ]; then
             # If custom version is provided, use it directly
-            NEW_VER=$(npm --no-git-tag-version version $CUSTOM_VERSION | tail -n 1)
+            NEW_VER=$(pnpm --no-git-tag-version version -r $CUSTOM_VERSION | tail -n 1)
             
             # Determine tag based on version string (contains '-' means beta)
             if [[ "$CUSTOM_VERSION" == *-* ]]; then
@@ -59,10 +59,10 @@ jobs:
           else
             # Use release-type logic
             if [[ "$RELEASE_TYPE" == pre* ]]; then
-              NEW_VER=$(npm --no-git-tag-version --preid=beta version $RELEASE_TYPE | tail -n 1)
+              NEW_VER=$(pnpm --no-git-tag-version --preid=beta version -r $RELEASE_TYPE | tail -n 1)
               TAG="beta"
             else
-              NEW_VER=$(npm --no-git-tag-version version $RELEASE_TYPE | tail -n 1)
+              NEW_VER=$(pnpm --no-git-tag-version version -r $RELEASE_TYPE | tail -n 1)
               TAG="latest"
             fi
           fi
@@ -93,7 +93,7 @@ jobs:
 
       # Publish version to public repository
       - name: Publish
-        run: pnpm publish --access public --tag ${{ env.RELEASE_TAG }} --no-git-checks
+        run: pnpm publish -r --access public --tag ${{ env.RELEASE_TAG }} --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPMJS_ACCESS_TOKEN }}
 
