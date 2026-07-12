@@ -5,17 +5,17 @@
       "dependsOn": ["^build"],
       "outputs": ["dist/**"]
     },
-    "lint": {
-      "dependsOn": ["^build"]
-    },
-    "lint:fix": {
-      "dependsOn": ["^build"],
-      "cache": false
-    },
     "format": {
       "cache": false
     },
     "format:check": {},
-    "test": {}
+    "test": {},
+    "//#lint:root": {
+      "dependsOn": ["^build"]
+    },
+    "//#lint:root:fix": {
+      "dependsOn": ["^build"],
+      "cache": false
+    }
   }
 }

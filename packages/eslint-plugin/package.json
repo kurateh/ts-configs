@@ -14,8 +14,6 @@
   ],
   "scripts": {
     "build": "tsup",
-    "lint": "oxlint",
-    "lint:fix": "oxlint --fix",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "test": "vitest run"
@@ -34,7 +32,6 @@
     "@typescript-eslint/utils": "^8.59.0"
   },
   "devDependencies": {
-    "@kurateh/oxlint-config": "file:../oxlint-config",
     "@types/node": "^24.13.3",
     "@typescript-eslint/parser": "8.59.0",
     "@typescript-eslint/rule-tester": "8.59.0",

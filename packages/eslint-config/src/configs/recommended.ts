@@ -1,11 +1,11 @@
 import js from "@eslint/js"
+import kuratehPlugin from "@kurateh/eslint-plugin"
 import { type Linter } from "eslint"
 import importPlugin from "eslint-plugin-import"
 import eslintPluginPrettierRecommended from "eslint-plugin-prettier/recommended"
 import unusedImportsPlugin from "eslint-plugin-unused-imports"
 import globals from "globals"
 import tseslint from "typescript-eslint"
-import kuratehPlugin from "@kurateh/eslint-plugin"
 
 export const recommendedConfig: Linter.Config[] = [
   js.configs.recommended,

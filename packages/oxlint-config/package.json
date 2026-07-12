@@ -22,14 +22,15 @@
   ],
   "scripts": {
     "build": "tsup",
-    "lint": "oxlint",
-    "lint:fix": "oxlint --fix",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },
   "keywords": [],
   "license": "ISC",
   "dependencies": {
-    "@kurateh/eslint-plugin": "workspace:*"
+    "@kurateh/eslint-plugin": "workspace:*",
+    "eslint-plugin-perfectionist": "^5.10.0",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-unused-imports": "^4.4.1"
   }
 }

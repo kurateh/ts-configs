@@ -5,9 +5,9 @@
   "private": true,
   "scripts": {
     "build": "turbo build",
-    "check": "turbo lint format:check test",
-    "lint": "turbo lint",
-    "lint:fix": "turbo lint:fix",
+    "check": "turbo lint:root format:check test",
+    "lint:root": "oxlint --ignore-pattern 'examples/**'",
+    "lint:root:fix": "oxlint --fix --ignore-pattern 'examples/**'",
     "format": "turbo format",
     "format:check": "turbo format:check",
     "test": "turbo test",
@@ -22,6 +22,7 @@
     "node": ">=24"
   },
   "devDependencies": {
+    "@kurateh/oxlint-config": "workspace:*",
     "eslint": "^10.7.0",
     "oxlint-tsgolint": "^0.24.0",
     "prettier": "^3.8.3",

@@ -1,11 +1,14 @@
 import { vi } from "vitest"
-import rule from "./import-path"
+
 import { ruleTester } from "@/rule-tester"
+
+import rule from "./import-path"
 
 // Use a consistent root for tests
 const root = "C:/project"
 
 vi.mock("node:fs", async (importOriginal) => {
+  // oxlint-disable-next-line typescript/consistent-type-imports
   const actual = await importOriginal<typeof import("node:fs")>()
   return {
     ...actual,

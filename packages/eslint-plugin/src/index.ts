@@ -1,4 +1,5 @@
 import type { ESLint } from "eslint"
+
 import { readFileSync } from "node:fs"
 
 import rules from "./rules"
