@@ -2,12 +2,5 @@ import config from "@kurateh/oxlint-config"
 import { defineConfig } from "oxlint"
 
 export default defineConfig({
-  extends: [
-    config,
-    {
-      rules: {
-        "no-console": 0,
-      },
-    },
-  ],
+  extends: [config],
 })
