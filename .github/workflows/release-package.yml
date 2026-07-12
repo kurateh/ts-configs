@@ -92,7 +92,7 @@ jobs:
 
       # Publish version to public repository
       - name: Publish
-        run: pnpm publish -r --access public --tag ${{ env.RELEASE_TAG }} --no-git-checks
+        run: pnpm --filter @kurateh/eslint-plugin publish --access public --tag ${{ env.RELEASE_TAG }} --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPMJS_ACCESS_TOKEN }}
 
