@@ -23,7 +23,7 @@
     "email": "me@kurateh.com"
   },
   "repository": {
-    "url": "https://github.com/kurateh/eslint-plugin"
+    "url": "https://github.com/kurateh/ts-configs"
   },
   "license": "ISC",
   "dependencies": {
