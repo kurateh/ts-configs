@@ -46,7 +46,7 @@ jobs:
         run: |
           if [ -n "$CUSTOM_VERSION" ]; then
             # If custom version is provided, use it directly
-            NEW_VER=$(pnpm --no-git-tag-version version -r $CUSTOM_VERSION | tail -n 1)
+            pnpm --no-git-tag-version version -r "$CUSTOM_VERSION"
             
             # Determine tag based on version string (contains '-' means beta)
             if [[ "$CUSTOM_VERSION" == *-* ]]; then
@@ -57,13 +57,14 @@ jobs:
           else
             # Use release-type logic
             if [[ "$RELEASE_TYPE" == pre* ]]; then
-              NEW_VER=$(pnpm --no-git-tag-version --preid=beta version -r $RELEASE_TYPE | tail -n 1)
+              pnpm --no-git-tag-version --preid=beta version -r "$RELEASE_TYPE"
               TAG="beta"
             else
-              NEW_VER=$(pnpm --no-git-tag-version version -r $RELEASE_TYPE | tail -n 1)
+              pnpm --no-git-tag-version version -r "$RELEASE_TYPE"
               TAG="latest"
             fi
           fi
+          NEW_VER=$(node -p "require('./package.json').version")
 
           echo "NEW_VERSION=$NEW_VER" >> $GITHUB_ENV
           echo "RELEASE_TAG=$TAG" >> $GITHUB_ENV
