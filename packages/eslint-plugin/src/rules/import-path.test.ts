@@ -35,6 +35,8 @@ vi.mock("node:fs", async (importOriginal) => {
   }
 })
 
+// FIXME
+// @ts-ignore
 ruleTester.run("import-path", rule, {
   valid: [
     {

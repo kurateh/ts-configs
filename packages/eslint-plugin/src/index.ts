@@ -14,6 +14,6 @@ const plugin: ESLint.Plugin = {
     version: pkg.version,
   },
   rules,
-} satisfies ESLint.Plugin
+}
 
 export default plugin
