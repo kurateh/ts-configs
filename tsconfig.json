@@ -9,10 +9,8 @@
     "skipLibCheck": true,
     "ignoreDeprecations": "6.0",
     "lib": ["ES2022", "DOM"],
-    "types": ["node", "vitest/globals"],
     "allowImportingTsExtensions": false,
     "resolveJsonModule": true
   },
-  "include": ["**/*.ts"],
-  "exclude": ["sample-project", "node_modules", "dist"]
+  "exclude": ["examples", "node_modules", "dist"]
 }

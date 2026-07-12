@@ -1,0 +1,35 @@
+{
+  "name": "@kurateh/oxlint-config",
+  "version": "1.0.0",
+  "type": "module",
+  "author": {
+    "name": "kurateh",
+    "email": "me@kurateh.com"
+  },
+  "repository": {
+    "url": "https://github.com/kurateh/eslint-plugin"
+  },
+  "packageManager": "pnpm@10.33.2",
+  "description": "",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "lint": "oxlint",
+    "lint:fix": "oxlint --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "keywords": [],
+  "license": "ISC",
+  "dependencies": {
+    "@kurateh/eslint-plugin": "workspace:*"
+  }
+}

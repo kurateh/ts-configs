@@ -1,10 +1,9 @@
 {
-  "[typescript]": {
-    "editor.formatOnSave": false
-  },
+  "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "always"
+    "source.fixAll.oxc": "always"
   },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "eslint.validate": [
     "javascript",
     "typescript",

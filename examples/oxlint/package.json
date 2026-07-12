@@ -1,0 +1,14 @@
+{
+  "name": "eslint",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "lint": "oxlint"
+  },
+  "devDependencies": {
+    "@kurateh/oxlint-config": "workspace:*",
+    "oxlint": "^1.73.0",
+    "prettier": "^3.8.3",
+    "typescript": "^6.0.3"
+  }
+}

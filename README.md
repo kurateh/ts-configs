@@ -1,77 +1,121 @@
-# @kurateh/eslint-plugin
+# kurateh lint packages
 
 English | [한국어](./README.ko.md)
 
-An ESLint plugin containing personal ESLint rules and recommended configurations.
+Personal lint packages for ESLint and Oxlint. This repository is a monorepo split into three packages:
+
+- `@kurateh/eslint-plugin`: custom ESLint rules.
+- `@kurateh/eslint-config`: shareable ESLint flat configs built on top of the plugin.
+- `@kurateh/oxlint-config`: shareable Oxlint config that enables the same custom rule through the ESLint plugin bridge.
 
 ## Requirements
-- **NodeJS**: >=22
-- **ESLint**: >= 9 (Flat Config only)
-- **TypeScript**: >= 5.7.2
 
-## 1. Usage
+- **Node.js**: >=24
+- **ESLint**: >=9 for ESLint users
+- **Oxlint**: >=1.73 for Oxlint users
+- **TypeScript**: >=6
 
-### Installation
+## Packages
+
+### `@kurateh/eslint-config`
+
+Use this package when you want the recommended ESLint setup.
+
 ```bash
-pnpm add -D @kurateh/eslint-plugin
-# or
-npm install --save-dev @kurateh/eslint-plugin
+pnpm add -D @kurateh/eslint-config eslint typescript
 ```
 
-### ESLint Configuration (`eslint.config.mjs`)
-This plugin supports ESLint Flat Config. You can add configurations as follows:
+`eslint.config.mjs`:
 
 ```javascript
-import kuratehPlugin from "@kurateh/eslint-plugin";
+import kurateh from "@kurateh/eslint-config"
+
+export default [ ...kurateh.recommended]
+```
+
+For React projects:
+
+```javascript
+import kurateh from "@kurateh/eslint-config"
+
+export default [...kurateh.react]
+```
+
+Provided configs:
+
+- `recommended`: TypeScript-oriented ESLint flat config with Prettier, import ordering, unused import cleanup, and `@kurateh/import-path`.
+- `react`: `recommended` plus React and React Hooks rules.
+
+### `@kurateh/eslint-plugin`
+
+Use this package when you only want the custom rules and will manage the rest of the ESLint config yourself.
+
+```bash
+pnpm add -D @kurateh/eslint-plugin eslint
+```
+
+`eslint.config.mjs`:
+
+```javascript
+import kuratehPlugin from "@kurateh/eslint-plugin"
 
 export default [
-  // Apply recommended configuration
-  ...kuratehPlugin.configs.recommended,
-  
-  // Apply additional configuration for React environments
-  ...kuratehPlugin.configs.react,
-  
   {
     plugins: {
       "@kurateh": kuratehPlugin,
     },
     rules: {
-      // Customize specific rules if needed
-      "@kurateh/import-path": "error",
+      "@kurateh/import-path": "warn",
     },
   },
-];
+]
 ```
 
-### Provided Configurations
-- `configs.recommended`: Recommended configuration for general TypeScript projects (includes Prettier).
-- `configs.react`: Additional configuration for React projects (includes React Hooks rules).
+Rules:
 
-## 2. Deployment via GitHub Actions
+- `@kurateh/import-path`: enforces relative imports for child modules and absolute alias imports for parent modules.
 
-This project is automatically deployed to the NPM registry via GitHub Actions.
+### `@kurateh/oxlint-config`
 
-### Deployment Process
-1.  **Update CHANGELOG.md**: Before deployment, record the changes for the new version under the `## [Unreleased]` section in `CHANGELOG.md`.
-    *   **Writing Example**:
-        ```markdown
-        ## [Unreleased]
-        ### Added
-        - New rule `@kurateh/new-rule`
-        ### Fixed
-        - Fixed false positive in `import-path` rule
-        ```
-2.  Go to the **Actions** tab of the GitHub repository.
-3.  Select **Release package** from the workflow list on the left.
-4.  Click the **Run workflow** button.
-5.  Select or enter one of the following options:
-    - **Release type**: Select one of `patch`, `minor`, `major` to bump the version.
-    - **Custom version (Optional)**: Enter a specific version to deploy immediately (e.g., `10.0.0`). If provided, `Release type` is ignored.
-6.  Click **Run workflow** to trigger the following automated steps:
-    - Run build and tests.
-    - Update the `[Unreleased]` section in `CHANGELOG.md` to the new version number.
-    - Update the version in `package.json`, commit changes, and create a tag.
-    - Publish to NPM and create a GitHub Release (Changelog content will be used as Release notes).
+Use this package when you want the same custom rule in Oxlint.
 
----
-**Note**: `NPMJS_ACCESS_TOKEN` must be registered in GitHub Secrets for successful deployment.
+```bash
+pnpm add -D @kurateh/oxlint-config oxlint typescript
+```
+
+`oxlint.config.ts`:
+
+```typescript
+import { defineConfig } from "oxlint"
+import config from "@kurateh/oxlint-config"
+
+export default defineConfig({
+  extends: [config],
+})
+```
+
+## Examples
+
+- `examples/eslint`: ESLint config package usage.
+- `examples/oxlint`: Oxlint config package usage.
+
+## Development
+
+```bash
+pnpm install
+pnpm build
+pnpm lint
+pnpm test
+```
+
+Run all checks:
+
+```bash
+pnpm check
+```
+
+## Release
+
+This repository is intended to publish the packages under `packages/*` to npm. Before releasing, update `CHANGELOG.md`, run the workspace checks, and publish the changed packages with the configured release workflow.
+
+`NPMJS_ACCESS_TOKEN` must be registered in GitHub Secrets for npm publishing.

@@ -1,0 +1,53 @@
+{
+  "name": "@kurateh/eslint-config",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "lint": "oxlint",
+    "lint:fix": "oxlint --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "keywords": [],
+  "author": {
+    "name": "kurateh",
+    "email": "me@kurateh.com"
+  },
+  "repository": {
+    "url": "https://github.com/kurateh/eslint-plugin"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "@eslint/js": "^10.0.1",
+    "@kurateh/eslint-plugin": "workspace:*",
+    "@typescript-eslint/eslint-plugin": "^8.59.0",
+    "@typescript-eslint/parser": "^8.59.0",
+    "@typescript-eslint/utils": "^8.59.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-import-resolver-typescript": "^4.4.4",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-prettier": "^5.5.5",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-unused-imports": "^4.4.1",
+    "globals": "^17.5.0",
+    "typescript-eslint": "^8.59.0"
+  },
+  "devDependencies": {
+    "@kurateh/oxlint-config": "workspace:*"
+  },
+  "peerDependencies": {
+    "eslint": ">=9"
+  }
+}
