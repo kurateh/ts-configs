@@ -1,6 +1,6 @@
 {
   "name": "@kurateh/eslint-plugin",
-  "version": "0.0.0",
+  "version": "11.0.0",
   "description": "",
   "type": "module",
   "exports": {
