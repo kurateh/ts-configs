@@ -30,7 +30,7 @@ pnpm add -D @kurateh/eslint-config eslint typescript
 ```javascript
 import kurateh from "@kurateh/eslint-config"
 
-export default [ ...kurateh.recommended]
+export default [...kurateh.recommended]
 ```
 
 For React projects:
@@ -87,10 +87,10 @@ pnpm add -D @kurateh/oxlint-config oxlint typescript
 
 ```typescript
 import { defineConfig } from "oxlint"
-import config from "@kurateh/oxlint-config"
+import { ts, react } from "@kurateh/oxlint-config"
 
 export default defineConfig({
-  extends: [config],
+  extends: [react], // or [ts] for non-React projects
 })
 ```
 

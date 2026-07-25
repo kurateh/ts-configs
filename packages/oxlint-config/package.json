@@ -30,7 +30,10 @@
   "dependencies": {
     "@kurateh/eslint-plugin": "workspace:*",
     "eslint-plugin-perfectionist": "^5.10.0",
-    "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-unused-imports": "^4.4.1"
+  },
+  "peerDependencies": {
+    "oxlint": "^1.75.0",
+    "typescript": "^6"
   }
 }

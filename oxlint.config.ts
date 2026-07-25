@@ -1,6 +1,6 @@
-import config from "@kurateh/oxlint-config"
+import { ts } from "@kurateh/oxlint-config"
 import { defineConfig } from "oxlint"
 
 export default defineConfig({
-  extends: [{ ignorePatterns: ["examples/**/*"] }, config],
+  extends: [{ ignorePatterns: ["examples/**/*"] }, ts],
 })

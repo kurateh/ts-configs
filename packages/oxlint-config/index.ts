@@ -1,14 +1,10 @@
-import { defineConfig } from "oxlint"
+import { defineConfig, type OxlintConfig } from "oxlint"
 
-export default defineConfig({
+const defaultConfig = {
   jsPlugins: [
     "@kurateh/eslint-plugin",
     "eslint-plugin-perfectionist",
     "eslint-plugin-unused-imports",
-    {
-      name: "react-fallback",
-      specifier: "eslint-plugin-react",
-    },
   ],
   categories: {
     correctness: "warn",
@@ -105,23 +101,32 @@ export default defineConfig({
         fixStyle: "inline-type-imports",
       },
     ],
-
-    // react
-    "react/react-in-jsx-scope": 0,
-    "react-fallback/function-component-definition": [
-      1,
-      {
-        namedComponents: "arrow-function",
-        unnamedComponents: "arrow-function",
-      },
-    ],
-    "react/jsx-curly-brace-presence": [
-      1,
-      {
-        props: "never",
-        children: "never",
-      },
-    ],
-    "react/no-children-prop": 1,
   },
-})
+} satisfies OxlintConfig
+
+const ts = defineConfig(defaultConfig)
+
+const reactConfig: OxlintConfig = structuredClone(defaultConfig)
+reactConfig.rules = {
+  ...reactConfig.rules!,
+  "react/react-in-jsx-scope": 0,
+  "react/function-component-definition": [
+    1,
+    {
+      namedComponents: "arrow-function",
+      unnamedComponents: "arrow-function",
+    },
+  ],
+  "react/jsx-curly-brace-presence": [
+    1,
+    {
+      props: "never",
+      children: "never",
+    },
+  ],
+  "react/no-children-prop": 1,
+}
+
+const react = defineConfig(reactConfig)
+
+export { ts, react }
